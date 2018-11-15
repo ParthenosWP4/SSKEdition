@@ -229,7 +229,7 @@ function saveTheData() {
 ```
 
 ### Use as a library in another software using the full implementation (implemented)
-Include the dist directory minus lib.js (unneeded) and teimeta.html (or you can redesing this file). This takes advantage of all functions implemented. It only requires to redesign the HTML page. The software can runned calling all internal basic functions.
+Include the dist directory minus lib.js (unneeded) and teimeta.html (or you can redesign this file). This takes advantage of all functions implemented. It only requires to redesign the HTML page. The software can runned calling all internal basic functions.
 Include *bundle.js and directory fonts* (found in folder dist)
 
   - window.teimeta.openXml() - ask the user to find an XML file on his computer (warning: a hidden tag with id 'upload-input-transcript'
