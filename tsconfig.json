@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "outDir": "/devlopt/teimeta/temp-page/",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "module": "commonjs",
+    "target": "es5",
+    "allowJs": true
+  }
+}

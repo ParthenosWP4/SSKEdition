@@ -1,0 +1,34 @@
+<html>
+<script src="../temp-page/lib.js"></script>
+<style>
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+</style>
+<body>
+  <span><b>Please edit the data and then</b></span>
+  <button id="test104" type="button" onclick="saveTheData();"><b><em>Save the data</em></b></button>
+  <hr/>
+  <div id="teimeta"></div>
+  <pre id="info">Nothing yet.</pre>
+</body>
+<script>
+
+window.teimeta.teimetaParams.defaultNewElement = false;
+window.teimeta.readXmlOddCss(null, 'http://localhost/test/test104.odd', null,
+  function (h) {
+    var el = document.getElementById('teimeta');
+    el.innerHTML = h;
+    window.teimeta.finalizeHTML();
+  });
+
+function saveTheData() {
+  var r = window.teimeta.generateXml();
+//  window.teimeta.saveFileLocal('xml', 'test104-result.xml', r);
+  var el = document.getElementById('info');
+  info.textContent = r;
+}
+
+</script>
+</html>

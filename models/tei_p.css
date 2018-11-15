@@ -1,0 +1,4 @@
+.title-element { display: block; background-color: brown; }
+.desc-element { display: block; border: 2px solid blue; background-color: burlywood; }
+.div-element { display: block; background-color: rgb(143, 173, 197); }
+.p-element { display: block; background-color: rgb(157, 184, 157); }
