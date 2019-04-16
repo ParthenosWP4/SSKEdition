@@ -1030,6 +1030,7 @@ exports.initCss = initCss;
  * @return {string} - xml content edited by teimeta library
  */
 function generateXml() {
+    console.log(exports.teiData)
     return generate.generateTEI(exports.teiData);
 }
 exports.generateXml = generateXml;

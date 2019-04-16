@@ -9905,6 +9905,7 @@ function encodeXML(s) {
  * @return {string} - xml content edited by teimeta library
  */
 function generateTEI(teiData) {
+    console.log(teiData)
     if (!teiData.dataOdd.namespace)
         teiData.dataOdd.namespace = 'http://www.tei-c.org/ns/1.0';
     var eltspec = teiData.dataTei;

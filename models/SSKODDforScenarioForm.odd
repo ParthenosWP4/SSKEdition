@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="tei_odds.rnc" type="application/relax-ng-compact-syntax"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
 	<teiHeader>
 		<fileDesc>
@@ -44,7 +43,7 @@
 						</sequence>
 					</content>
 					<attList>
-						<attDef ident="type" usage="req" mode="change">
+						<attDef ident="type"  mode="change">
 							<datatype>
 								<dataRef key="teidata.enumerated"/>
 							</datatype>
@@ -61,11 +60,11 @@
 				<!-- structure generale teiHeader -->
 				<elementSpec ident="teiHeader" module="header" mode="change">
 					<content>
-						<sequence minOccurs="1" maxOccurs="1">
+						<!--<sequence minOccurs="1" maxOccurs="1">-->
 							<elementRef key="fileDesc"/>
 							<!--<elementRef key="encodingDesc"/>
 							<elementRef key="revisionDesc"/>-->
-						</sequence>
+						<!--</sequence>-->
 					</content>
 				</elementSpec>
 
@@ -211,9 +210,7 @@
 				<!-- Text Part  -->
 				<elementSpec ident="text" module="textstructure">
 					<content>
-						<sequence>
 							<elementRef key="body"/>
-						</sequence>
 					</content>
 				</elementSpec>
 
@@ -234,20 +231,18 @@
 				<!--div-->
 				<elementSpec ident="div" module="textstructure">
 					<content>
-						<alternate minOccurs="0" maxOccurs="1">
-							<elementRef key="head"/>
-							<elementRef key="desc" corresp="definition"/>
-							<elementRef key="desc" corresp="terms"/>
-						</alternate>
-						<sequence minOccurs="1" maxOccurs="1">
+							<elementRef key="head" minOccurs="0" maxOccurs="1" />
+							<elementRef key="desc" corresp="definition" minOccurs="0" maxOccurs="1" />
+							<elementRef key="desc" corresp="terms" minOccurs="1" maxOccurs="1" />
+						<!--<sequence minOccurs="1" maxOccurs="1">-->
 							<elementRef key="figure"/>
-							<elementRef key="listEvent"/>
-						</sequence>
+						<!--</sequence>-->
 					</content>
 				</elementSpec>
 
 				<!--head-->
 				<elementSpec ident="head">
+					<desc>Head or title of  of the scenario</desc>
 					<content>
 						<textNode/>
 					</content>
@@ -264,16 +259,17 @@
 				<elementSpec ident="desc" corresp="definition">
 					<desc>Description of the scenario</desc>
 					<content>
-						<alternate minOccurs="0" maxOccurs="unbounded">
+						<alternate>
 							<textNode/>
-							<elementRef key="list" minOccurs="0"/>
-							<elementRef key="ref" corresp="descRef" minOccurs="0"/>
-							<elementRef key="abbr" minOccurs="0"/>
-							<elementRef key="expan" minOccurs="0"/>
+							<elementRef key="list"  minOccurs="0" maxOccurs="unbounded"/>
+							<elementRef key="ref" corresp="descRef" minOccurs="0" maxOccurs="unbounded"/>
+							<elementRef key="abbr" minOccurs="0" maxOccurs="unbounded"/>
+							<elementRef key="expan" minOccurs="0" maxOccurs="unbounded"/>
 						</alternate>
 					</content>
 					<attList>
-						<attDef ident="type" usage="req" mode="change">
+						<attDef ident="type"  mode="change">
+							<desc>Description of the scenario</desc>
 							<defaultVal>definition</defaultVal>
 						</attDef>
 						<!-- @xml:lang is required -->
@@ -284,7 +280,7 @@
 						</attDef>
 					</attList>
 				</elementSpec>
-				
+
 				<elementSpec ident="ref" corresp="descRef">
 					<content>
 						<alternate>
@@ -305,10 +301,11 @@
 
 				<!--Desc - terms-->
 				<elementSpec ident="desc" corresp="terms">
+					<desc>List of scenario's terms</desc>
 					<content>
-						<elementRef key="term" minOccurs="0" maxOccurs="4" corresp="disciplines"/>
-						<elementRef key="term" minOccurs="0" maxOccurs="4" corresp="objects"/>
-						<elementRef key="term" minOccurs="0" maxOccurs="4" corresp="techniques"/>
+						<elementRef key="term" corresp="disciplines" minOccurs="1" maxOccurs="4" />
+						<elementRef key="term" corresp="objects" minOccurs="1" maxOccurs="4" />
+						<elementRef key="term" corresp="techniques" minOccurs="1" maxOccurs="4" />
 					</content>
 				</elementSpec>
 
@@ -320,6 +317,9 @@
 					<attList>
 						<attDef ident="key">
 							<desc>The term itself</desc>
+							<datatype>
+								<dataRef name="anyURI"/>
+							</datatype>
 							<valList>
 								<valItem ident="Archaeology and Prehistory"/>
 								<valItem ident="Architecture, space management"/>
@@ -352,10 +352,16 @@
 						</attDef>
 						<attDef ident="source">
 							<desc>The thesaurus used</desc>
+							<datatype>
+								<dataRef name="anyURI"/>
+							</datatype>
 							<defaultVal>AureHal</defaultVal>
 						</attDef>
 						<attDef ident="type">
 							<desc>The type of the term</desc>
+							<datatype>
+								<dataRef name="anyURI"/>
+							</datatype>
 							<defaultVal>discipline</defaultVal>
 						</attDef>
 					</attList>
@@ -366,10 +372,14 @@
 				<elementSpec ident="term" corresp="objects">
 					<desc>Research objects are the different types of data produced, studied or
 						manipulated in a scenario. Scenarios may apply to one or more research
-						objects. </desc>
+						objects. 
+					</desc>
 					<attList>
 						<attDef ident="key">
 							<desc>The term itself</desc>
+							<datatype>
+								<dataRef name="anyURI"/>
+							</datatype>
 							<valList>
 								<valItem ident="Artifacts"/>
 								<valItem ident="Bibliographic Listings"/>
@@ -411,10 +421,16 @@
 						</attDef>
 						<attDef ident="source">
 							<desc>The thesaurus used</desc>
+							<datatype>
+								<dataRef name="anyURI"/>
+							</datatype>
 							<defaultVal>TaDiRAH</defaultVal>
 						</attDef>
 						<attDef ident="type">
 							<desc>The type of the term</desc>
+							<datatype>
+								<dataRef name="anyURI"/>
+							</datatype>
 							<defaultVal>object</defaultVal>
 						</attDef>
 					</attList>
@@ -428,6 +444,9 @@
 					<attList>
 						<attDef ident="key">
 							<desc>The term itself</desc>
+							<datatype>
+								<dataRef name="anyURI"/>
+							</datatype>
 							<valList>
 								<valItem ident="Bit Stream Preservation"/>
 								<valItem ident="Brainstorming"/>
@@ -469,25 +488,36 @@
 						</attDef>
 						<attDef ident="source">
 							<desc>The thesaurus used</desc>
+							<datatype>
+								<dataRef name="anyURI"/>
+							</datatype>
 							<defaultVal>TaDiRAH</defaultVal>
 						</attDef>
 						<attDef ident="type">
 							<desc>The type of the term</desc>
+							<datatype>
+								<dataRef name="anyURI"/>
+							</datatype>
 							<defaultVal>technique</defaultVal>
 						</attDef>
 					</attList>
 				</elementSpec>
+
+
 				<!--Figure-->
 				<elementSpec ident="figure">
+					<desc>Image to i scenario</desc>
 					<content>
 						<sequence minOccurs="1" maxOccurs="1">
-							<elementRef key="head"/>
+							<!--<elementRef key="fileDesc" minOccurs="1" maxOccurs="1" />-->
 							<elementRef key="graphic"/>
 							<elementRef key="figDesc"/>
 							<elementRef key="licence"/>
 						</sequence>
 					</content>
 				</elementSpec>
+				
+				
 
 				<elementSpec ident="graphic">
 					<content>
@@ -497,6 +527,20 @@
 
 				<elementSpec ident="figDesc">
 					<desc>Image caption</desc>
+					<content>
+						<textNode/>
+					</content>
+				</elementSpec>
+
+				<!-- Paragraphe -->
+				<elementSpec ident="p" module="core" mode="change">
+					<content>
+						<textNode/>
+					</content>
+				</elementSpec>
+
+				<!-- persName -->
+				<elementSpec ident="persName" module="namesdates">
 					<content>
 						<textNode/>
 					</content>
